@@ -48,8 +48,9 @@ Q: handle large read/query volume: Millions merchants want to get insight about 
 
 Q: provide metrics to customers with at most one hour delay.
 * A: Almost real-time, since Kafka message transmission is fast and Druid has the pre-aggregation before persistence, so Druid is fast enough
-Q:run with minimum downtime.
+
+Q: run with minimum downtime.
 * A: all components have multiple instances, suppose we could deploy them in kubernetes cluster to leverage its HA features (Service / liveness & readiness probe /rolliing update)
 
-Q:have the ability to reprocess historical data in case of bugs in the processing logic.
+Q: have the ability to reprocess historical data in case of bugs in the processing logic.
 * A: with Extra-Once configured in the KafkaStreams, data could be reprocessed if anything error happens.

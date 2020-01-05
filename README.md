@@ -38,7 +38,7 @@
 > * sending notification to frontend(keep-alive connection)
 
 
-##Problems and Answers
+## Problems and Answers
 Q: handle large write volume: Billions write events per day.
 A: All components could be horizontal scaling, so it is easy to cope with the request
 Kafka and Redis could hold 10W+ QPS, so there is no bottleneck

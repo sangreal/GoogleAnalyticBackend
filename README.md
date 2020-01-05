@@ -38,18 +38,18 @@
 > * sending notification to frontend(keep-alive connection)
 
 
-##Problems and Answers
+## Problems and Answers
 Q: handle large write volume: Billions write events per day.
 A: All components are stateless so they could be horizontal scaling, so it is easy to cope with the request
-Kafka and Redis could hold 10W+ QPS, so there is no bottleneck
 
 Q: handle large read/query volume: Millions merchants want to get insight about their business. Read/Query patterns are time-series related metrics.
-A: Query service / consumer are horizontal scalable, with kafka streams / Druid, it could be in nearly real-time
+* A: Query service / consumer are horizontal scalable, with kafka streams / Druid, it could be in nearly real-time
 
 Q: provide metrics to customers with at most one hour delay.
-A: Almost real-time, since Kafka message transmission is fast and Druid has the pre-aggregation before persistence, so Druid is fast enough
-Q:run with minimum downtime.
-A: all components have multiple instances, suppose we could deploy them in kubernetes cluster to leverage its HA features (Service / liveness & readiness probe /rolliing update)
+* A: Almost real-time, since Kafka message transmission is fast and Druid has the pre-aggregation before persistence, so Druid is fast enough
 
-Q:have the ability to reprocess historical data in case of bugs in the processing logic.
-A: with Extra-Once configured in the KafkaStreams, data could be reprocessed if anything error happens.
+Q: run with minimum downtime.
+* A: all components have multiple instances, suppose we could deploy them in kubernetes cluster to leverage its HA features (Service / liveness & readiness probe /rolliing update)
+
+Q: have the ability to reprocess historical data in case of bugs in the processing logic.
+* A: with Extra-Once configured in the KafkaStreams, data could be reprocessed if anything error happens.

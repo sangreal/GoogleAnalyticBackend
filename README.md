@@ -4,7 +4,7 @@
 
 
 ## components
-*Load Balancer and Gateway
+* Load Balancer and Gateway
 >* dispatch the requests and load balancing
 
 * Metric Producer:
@@ -19,8 +19,8 @@
 > * smooth the request to avoid spike
 
 * Metric Consumer:
-> * received the metrics by listening to topic and sink them to Druid using KStreams
-> * stateless, read offsets will be stored in RocksDB
+> * received the metrics by listening to topic and sink them to Druid, the offsets will be stored in Druid to ensure exact-once delivery
+> * stateless
 > * error message will be sent to error topic in Kafka
 
 * Query Consumer:
@@ -40,7 +40,7 @@
 
 ##Problems and Answers
 Q: handle large write volume: Billions write events per day.
-A: All components could be horizontal scaling, so it is easy to cope with the request
+A: All components are stateless so they could be horizontal scaling, so it is easy to cope with the request
 Kafka and Redis could hold 10W+ QPS, so there is no bottleneck
 
 Q: handle large read/query volume: Millions merchants want to get insight about their business. Read/Query patterns are time-series related metrics.
